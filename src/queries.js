@@ -22,7 +22,7 @@ module.exports = {
         let sql = "SELECT * FROM PRODUCT";
         return await query(sql);
     },
-    getAllProducts: async () => {
+    getAllSellers: async () => {
         let sql = "SELECT * FROM SELLER";
         return await query(sql);
     }

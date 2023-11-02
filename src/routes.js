@@ -11,6 +11,18 @@ const routes = (app) => {
         let users = await queries.getAllUsers();
         res.send(users);
     });
+
+    app.get('/getAllProducts', async (req, res) => {
+        res.status(200);
+        let products = await queries.getAllProducts();
+        res.send(products);
+    });
+
+    app.get('/getAllSellers', async (req, res) => {
+        res.status(200);
+        let sellers = await queries.getAllSellers();
+        res.send(sellers);
+    });
 };
 
 module.exports = routes;
