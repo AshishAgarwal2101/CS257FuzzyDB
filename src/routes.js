@@ -1,9 +1,10 @@
 const queries = require("./queries");
+const service = require("./service");
 
 const routes = (app) => {
     app.get('/', (req, res)=>{ 
         res.status(200); 
-        res.send("Welcome to root URL of Server"); 
+        res.send("Welcome to our project home page - CS 257"); 
     });
 
     app.get('/getAllUsers', async (req, res) => {
@@ -22,6 +23,18 @@ const routes = (app) => {
         res.status(200);
         let sellers = await queries.getAllSellers();
         res.send(sellers);
+    });
+
+    app.get('/getUserSellerJoin', async (req, res) => {
+        try {
+            res.status(200);
+            let joined = await service.getUserSellerJoin("username", "username");
+            res.send(joined);
+        } catch(e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
     });
 };
 
