@@ -1,7 +1,6 @@
 const queries = require("./queries");
 const similarityAlgorithms = require("./similarityAlgorithms");
 
-
 module.exports = {
     getUserSellerJoin: async (userCol, sellerCol) => {
         let users = await queries.getAllUsers();
