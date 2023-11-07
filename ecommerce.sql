@@ -32,7 +32,7 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
@@ -56,7 +56,7 @@ CREATE TABLE `seller` (
   `productIds` varchar(400) NOT NULL,
   `productNames` varchar(800) NOT NULL,
   `rating` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `seller`
@@ -82,7 +82,7 @@ CREATE TABLE `user` (
   `password` int(11) NOT NULL,
   `age` int(11) NOT NULL,
   `wishlist` varchar(400) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
