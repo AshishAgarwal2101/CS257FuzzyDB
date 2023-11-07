@@ -25,10 +25,10 @@ const routes = (app) => {
         res.send(sellers);
     });
 
-    app.get('/getUserSellerJoin', async (req, res) => {
+    app.get('/getUserSellerJoinLevenshtein', async (req, res) => {
         try {
             res.status(200);
-            let joined = await service.getUserSellerJoin("username", "username");
+            let joined = await service.getUserSellerJoinLevenshtein("username", "username");
             res.send(joined);
         } catch(e) {
             res.status(500);
@@ -36,6 +36,31 @@ const routes = (app) => {
             res.send();
         }
     });
+
+    app.get('/getUserSellerJoinSoundex', async (req, res) => {
+        try {
+            res.status(200);
+            let joined = await service.getUserSellerJoinSoundex("username", "username");
+            res.send(joined);
+        } catch(e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
+    });
+
+    app.get('/getUserSellerJoinMetaphone', async (req, res) => {
+        try {
+            res.status(200);
+            let joined = await service.getUserSellerJoinMetaphone("username", "username");
+            res.send(joined);
+        } catch(e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
+    });
+
 };
 
 module.exports = routes;
