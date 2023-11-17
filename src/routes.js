@@ -1,7 +1,14 @@
 const queries = require("./queries");
 const service = require("./service");
+const { Parser } = require("node-sql-parser");
+const bodyParser = require('body-parser');
+const parser = new Parser();
 
 const routes = (app) => {
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.use(bodyParser.raw());
+
     app.get('/', (req, res)=>{ 
         res.status(200); 
         res.send("Welcome to our project home page - CS 257"); 
@@ -59,6 +66,13 @@ const routes = (app) => {
             console.log("Something went wrong during user and seller join: ", e);
             res.send();
         }
+    });
+
+    app.post("/execQuery", async (req, res) => {
+        console.log("Req body: ", req.body);
+        let ast = parser.astify(req.body.statement);
+        res.status(200);
+        res.send(ast);
     });
 
 };

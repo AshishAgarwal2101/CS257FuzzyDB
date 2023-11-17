@@ -25,5 +25,8 @@ module.exports = {
     getAllSellers: async () => {
         let sql = "SELECT * FROM SELLER";
         return await query(sql);
+    },
+    execute: async (sql) => {
+        return await query(sql);
     }
 };

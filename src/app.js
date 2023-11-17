@@ -1,7 +1,7 @@
 const express = require('express');
 
 const app = express(); 
-const PORT = 3000; 
+const PORT = 3001; 
   
 app.listen(PORT, (error) =>{ 
     if(!error) {
@@ -10,6 +10,8 @@ app.listen(PORT, (error) =>{
     else {
         console.log("Error occurred, server can't start", error); 
     }
-}); 
+});
+
+
 
 require("./routes")(app);

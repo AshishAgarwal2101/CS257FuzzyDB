@@ -21,6 +21,7 @@ module.exports = {
         });
 
         return userSellerJoined;
+
     }
     , 
     getUserSellerJoinSoundex: async (userCol, sellerCol) => {

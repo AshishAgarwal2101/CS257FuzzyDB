@@ -19,7 +19,7 @@ const levenshteinRecursive = (str1, str2, m, n) => {
         levenshteinRecursive(str1, str2, m - 1, n), //Remove
         levenshteinRecursive(str1, str2, m - 1, n - 1) //Replace
     );
-}
+};
 
 const SoundexScore = (str) => {
     let s = [];
