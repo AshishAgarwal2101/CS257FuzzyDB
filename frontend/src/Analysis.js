@@ -1,20 +1,13 @@
 // Analysis.js
 
 import React, { useState } from 'react';
-import { BASE_URL } from './Common';
+import { BASE_URL, displayTable } from './Common';
 import './App.css';
 
 function Analysis() {
-  // State to track the selected algorithm
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState('');
-
-  // State to track the input value
   const [inputValue, setInputValue] = useState('');
+  const [searchData, setSearchData] = useState('');
 
-  // State to track the display result
-  const [displayResult, setDisplayResult] = useState('');
-
-  // Function to handle button click
   const handleButtonClick = async (algorithm) => {
       try {
         const response = await fetch(BASE_URL + '/api/queryJoin', {
@@ -30,10 +23,23 @@ function Analysis() {
         }
   
         const data = await response.json();
-        setDisplayResult(`Search results for: ${inputValue}, Data: ${JSON.stringify(data)}`);
+        if(data) {
+          let updatedData = data.map((obj) => {
+            let tableNames = Object.keys(obj);
+            let tableArr = tableNames.flatMap((tableName) => {
+              let tableObj = obj[tableName];
+              let tableKeys = Object.keys(tableObj);
+              return tableKeys.map((tableKey) => [[tableName + "." + tableKey], tableObj[tableKey]]);
+            });
+
+            return Object.fromEntries(tableArr);
+          });
+          
+          console.log("Updated data: ", updatedData);
+          setSearchData(updatedData);
+        }
       } catch (error) {
         console.error('Error during search:', error);
-        setDisplayResult('Error during search');
       }
     };
 
@@ -65,7 +71,7 @@ function Analysis() {
       </div>
 
       <div className="DisplayResult">
-        <p>{displayResult}</p>
+        {searchData && searchData.length > 0 ? displayTable("QUERY RESULT TABLE", searchData) : ""}
       </div>
     </div>
   );

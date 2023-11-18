@@ -117,6 +117,22 @@ body {
   border-radius: 10px;
 }
 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #544c4c;
+}
+
 .Intro {
   max-width: 800px;
   margin: 20px auto;
@@ -124,6 +140,21 @@ body {
   background-color: #282c34;
   padding: 20px;
   border-radius: 10px;
+}
+
+.SimilarString {
+  margin: 30px;
+}
+
+.simple-box {
+  background: none;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .InputBar2 {
