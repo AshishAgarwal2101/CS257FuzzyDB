@@ -1,4 +1,3 @@
-
 const LEVENSHTEIN_DISTANCE_THRESHOLD = 2;
 
 const isLevenshteinDistanceSimilar = (str1, str2) => {
@@ -20,6 +19,39 @@ const levenshteinRecursive = (str1, str2, m, n) => {
         levenshteinRecursive(str1, str2, m - 1, n - 1) //Replace
     );
 };
+
+
+const getCosineSimilarity = (str1, str2) => {
+  tfidf.addDocument(str1);
+  tfidf.addDocument(str2);
+
+  const vec1 = tfidf.documents[0];
+  const vec2 = tfidf.documents[1];
+
+  const dotProduct = Object.keys(vec1).reduce((acc, term) => {
+    return acc + (vec1[term] * (vec2[term] || 0));
+  }, 0);
+
+  const mag1 = Math.sqrt(Object.values(vec1).reduce((acc, val) => acc + Math.pow(val, 2), 0));
+  const mag2 = Math.sqrt(Object.values(vec2).reduce((acc, val) => acc + Math.pow(val, 2), 0));
+
+  if (mag1 !== 0 && mag2 !== 0) {
+    return dotProduct / (mag1 * mag2);
+  } else {
+    return 0;
+  }
+}
+
+
+const isSoundexSimilar = (str1, str2) => {
+  if(SoundexScore(str1) <= SoundexScore(str2)) return true;
+  return false;
+}
+
+const isMetaphoneSimilar = (str1, str2) => {
+  if(Metaphone(str1) <= Metaphone(str2)) return true;
+  return false;
+}
 
 const SoundexScore = (str) => {
     let s = [];
@@ -242,8 +274,11 @@ const Metaphone = (input) => {
   }
 
 
+
+
 module.exports = {
     isLevenshteinDistanceSimilar,
-    SoundexScore,
-    Metaphone
+    isSoundexSimilar,
+    isMetaphoneSimilar,
+    getCosineSimilarity
 }

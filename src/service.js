@@ -32,7 +32,7 @@ module.exports = {
             return sellers
                 .map((seller) => {
                     let sellerColData = seller[sellerCol];
-                    if(similarityAlgorithms.SoundexScore(userColData) == similarityAlgorithms.SoundexScore(sellerColData)) {
+                    if(similarityAlgorithms.isSoundexSimilar(userColData,sellerColData)) {
                         return {user, seller};
                     }
                     else {
@@ -53,7 +53,7 @@ module.exports = {
             return sellers
                 .map((seller) => {
                     let sellerColData = seller[sellerCol];
-                    if(similarityAlgorithms.Metaphone(userColData) == similarityAlgorithms.Metaphone(sellerColData)) {
+                    if(similarityAlgorithms.isMetaphoneSimilar(userColData,sellerColData)) {
                         return {user, seller};
                     }
                     else {
@@ -64,5 +64,27 @@ module.exports = {
         });
 
         return userSellerJoined;
+    }
+    ,
+    getUserSellerJoinCosineSimilarity: async (userCol, sellerCol) => {
+        let users = await queries.getAllUsers();
+        let sellers = await queries.getAllSellers();
+        let userSellerJoined = users.flatMap((user) => {
+            let userColData = user[userCol];
+            return sellers
+                .map((seller) => {
+                    let sellerColData = seller[sellerCol];
+                    if(similarityAlgorithms.getCosineSimilarity(userColData, sellerColData)) {
+                        return {user, seller};
+                    }
+                    else {
+                        return null;
+                    }
+                })
+                .filter((userSeller) => userSeller !== null);
+        });
+
+        return userSellerJoined;
+
     }
 }

@@ -68,6 +68,18 @@ const routes = (app) => {
         }
     });
 
+    app.get('/getUserSellerJoinCosineSimilarity', async (req, res) => {
+        try {
+            res.status(200);
+            let joined = await service.getUserSellerJoinCosineSimilarity("username", "username");
+            res.send(joined);
+        } catch(e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
+    });
+
     app.post("/execQuery", async (req, res) => {
         console.log("Req body: ", req.body);
         let ast = parser.astify(req.body.statement);
