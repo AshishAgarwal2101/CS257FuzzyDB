@@ -1,4 +1,6 @@
 const LEVENSHTEIN_DISTANCE_THRESHOLD = 2;
+const COSINE_SIMILARITY_THRESHOLD = 80.0;
+
 
 const isLevenshteinDistanceSimilar = (str1, str2) => {
     let distance = levenshteinRecursive(str1, str2, str1.length, str2.length);
@@ -21,27 +23,64 @@ const levenshteinRecursive = (str1, str2, m, n) => {
 };
 
 
-const getCosineSimilarity = (str1, str2) => {
-  tfidf.addDocument(str1);
-  tfidf.addDocument(str2);
+const isCosineSimilar = (str1, str2) => {
 
-  const vec1 = tfidf.documents[0];
-  const vec2 = tfidf.documents[1];
+  let similarityScore = getCosineSimilarity(str1, str2);
+  if(similarityScore >= COSINE_SIMILARITY_THRESHOLD) return true;
+  return false;
+};
 
-  const dotProduct = Object.keys(vec1).reduce((acc, term) => {
-    return acc + (vec1[term] * (vec2[term] || 0));
-  }, 0);
 
-  const mag1 = Math.sqrt(Object.values(vec1).reduce((acc, val) => acc + Math.pow(val, 2), 0));
-  const mag2 = Math.sqrt(Object.values(vec2).reduce((acc, val) => acc + Math.pow(val, 2), 0));
+const getCosineSimilarity = (name1, name2) => {
+  function getNGrams(name, n) {
+    const ngrams = [];
+    for (let i = 0; i < name.length - n + 1; i++) {
+      ngrams.push(name.slice(i, i + n));
+    }
+    return ngrams;
+  }
+
+  function vectorize(ngrams, allNgrams) {
+    const vector = new Array(allNgrams.length).fill(0);
+    for (const ngram of ngrams) {
+      const index = allNgrams.indexOf(ngram);
+      if (index !== -1) {
+        vector[index] += 1;
+      }
+    }
+    return vector;
+  }
+
+  function dotProduct(vec1, vec2) {
+    return vec1.reduce((acc, val, i) => acc + val * vec2[i], 0);
+  }
+
+  function magnitude(vec) {
+    return Math.sqrt(vec.reduce((acc, val) => acc + val * val, 0));
+  }
+
+  const n = 1; // Change 'n' for different n-gram sizes
+  const name1Lower = name1.toLowerCase();
+  const name2Lower = name2.toLowerCase();
+
+  const ngrams1 = Array.from(new Set(getNGrams(name1Lower, n)));
+  const ngrams2 = Array.from(new Set(getNGrams(name2Lower, n)));
+  const allNgrams = Array.from(new Set([...ngrams1, ...ngrams2]));
+
+  const vector1 = vectorize(ngrams1, allNgrams);
+  const vector2 = vectorize(ngrams2, allNgrams);
+
+  const dotProd = dotProduct(vector1, vector2);
+  const mag1 = magnitude(vector1);
+  const mag2 = magnitude(vector2);
 
   if (mag1 !== 0 && mag2 !== 0) {
-    return dotProduct / (mag1 * mag2);
+    const similarity = (dotProd / (mag1 * mag2)) * 100;
+    return similarity.toFixed(1) + "%";
   } else {
-    return 0;
+    return "0%";
   }
 }
-
 
 const isSoundexSimilar = (str1, str2) => {
   if(SoundexScore(str1) <= SoundexScore(str2)) return true;
@@ -280,5 +319,5 @@ module.exports = {
     isLevenshteinDistanceSimilar,
     isSoundexSimilar,
     isMetaphoneSimilar,
-    getCosineSimilarity
+    isCosineSimilar
 }

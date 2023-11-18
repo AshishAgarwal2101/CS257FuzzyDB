@@ -167,7 +167,7 @@ module.exports = {
             return sellers
                 .map((seller) => {
                     let sellerColData = seller[sellerCol];
-                    if(similarityAlgorithms.getCosineSimilarity(userColData, sellerColData)) {
+                    if(similarityAlgorithms.isCosineSimilar(userColData, sellerColData)) {
                         return {user, seller};
                     }
                     else {
