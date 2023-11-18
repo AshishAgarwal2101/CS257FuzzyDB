@@ -12,4 +12,9 @@ app.listen(PORT, (error) =>{
     }
 });
 
-require("./routes")(app);
+
+app.use(express.static('frontend/build'));
+const apiRouter = express.Router();
+app.use("/api", apiRouter);
+
+require("./routes")(apiRouter);
