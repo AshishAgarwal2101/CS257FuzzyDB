@@ -32,6 +32,20 @@ const routes = (app) => {
         res.send(sellers);
     });
 
+    app.post('/queryJoin', async (req, res) => {
+        try {
+            let sql = req.body.statement;
+            let algorithm = req.body.algorithm;
+            let queryResponse = await service.executeQueryWithJoin(sql, algorithm);
+            res.status(200);
+            res.send(queryResponse);
+        } catch (e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
+    });
+
     app.get('/getUserSellerJoinLevenshtein', async (req, res) => {
         try {
             res.status(200);
