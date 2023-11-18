@@ -76,9 +76,9 @@ const getCosineSimilarity = (name1, name2) => {
 
   if (mag1 !== 0 && mag2 !== 0) {
     const similarity = (dotProd / (mag1 * mag2)) * 100;
-    return similarity.toFixed(1) + "%";
+    return similarity.toFixed(1);
   } else {
-    return "0%";
+    return 0;
   }
 }
 

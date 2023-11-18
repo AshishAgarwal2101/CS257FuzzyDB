@@ -21,12 +21,14 @@ const isSimilar = (algorithm, left, right) => {
         return similarityAlgorithms.isLevenshteinDistanceSimilar(left, right);
     }
     else if(algorithm.toUpperCase() === "SOUNDEX") {
-        return similarityAlgorithms.isLevenshteinDistanceSimilar(left, right);
+        return similarityAlgorithms.isSoundexSimilar(left, right);
     }
     else if(algorithm.toUpperCase() === "METAPHONE") {
-        return similarityAlgorithms.isLevenshteinDistanceSimilar(left, right);
+        return similarityAlgorithms.isMetaphoneSimilar(left, right);
     }
-
+    else if(algorithm.toUpperCase() === "COSINE") {
+        return similarityAlgorithms.isCosineSimilar(left, right);
+    }
     return false;
 }
 
