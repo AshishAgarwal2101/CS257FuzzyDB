@@ -12,6 +12,4 @@ app.listen(PORT, (error) =>{
     }
 });
 
-
-
 require("./routes")(app);
