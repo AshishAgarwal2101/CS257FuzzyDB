@@ -1,6 +1,7 @@
 // Analysis.js
 
 import React, { useState } from 'react';
+import { BASE_URL } from './Common';
 import './App.css';
 
 function Analysis() {
@@ -16,7 +17,7 @@ function Analysis() {
   // Function to handle button click
   const handleButtonClick = async (algorithm) => {
       try {
-        const response = await fetch('http://localhost:3001/api/queryJoin', {
+        const response = await fetch(BASE_URL + '/api/queryJoin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

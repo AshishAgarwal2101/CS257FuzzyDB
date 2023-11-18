@@ -1,6 +1,7 @@
 // AppHome.js
 
 import React, { useState } from 'react';
+import { BASE_URL } from './Common';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import './App.css';
 
@@ -13,7 +14,7 @@ function AppHome() {
   const handleSearchClick = async () => {
     // Perform search logic here
     setDisplayResult(`Search results for: ${searchInput}`);
-    let url = "http://localhost:3001/api/search";
+    let url = BASE_URL + "/api/search";
     let requestBody = {
       method: 'POST',
       headers: {
