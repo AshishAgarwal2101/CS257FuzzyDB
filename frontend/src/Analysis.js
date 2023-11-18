@@ -14,28 +14,30 @@ function Analysis() {
   const [displayResult, setDisplayResult] = useState('');
 
   // Function to handle button click
-  const handleButtonClick = (algorithm) => {
-    // Update selected algorithm
-    setSelectedAlgorithm(algorithm);
+  const handleButtonClick = async (algorithm) => {
+      try {
+        const response = await fetch('http://localhost:3001/api/queryJoin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ statement: inputValue, algorithm})
+        });
+  
+        if (!response.ok) {
+          throw new Error('Search request failed');
+        }
+  
+        const data = await response.json();
+        setDisplayResult(`Search results for: ${inputValue}, Data: ${JSON.stringify(data)}`);
+      } catch (error) {
+        console.error('Error during search:', error);
+        setDisplayResult('Error during search');
+      }
+    };
 
-    // Perform analysis based on the selected algorithm (You can replace this with your analysis logic)
-    switch (algorithm) {
-      case 'Levenshtein':
-        setDisplayResult(`Perform Levenshtein analysis for "${inputValue}"`);
-        break;
-      case 'Soundex':
-        setDisplayResult(`Perform Soundex analysis for "${inputValue}"`);
-        break;
-      case 'Metaphone':
-        setDisplayResult(`Perform Metaphone analysis for "${inputValue}"`);
-        break;
-      case 'CosineSimilarity':
-        setDisplayResult(`Perform Cosine Similarity analysis for "${inputValue}"`);
-        break;
-      default:
-        setDisplayResult('');
-    }
-  };
+  
+
 
   return (
     <div className="App">
@@ -55,10 +57,10 @@ function Analysis() {
       </div>
 
       <div className="AlgorithmButtons">
-        <button onClick={() => handleButtonClick('Levenshtein')}>Levenshtein</button>
+        <button onClick={() => handleButtonClick('LEVENSHTEIN')}>Levenshtein</button>
         <button onClick={() => handleButtonClick('Soundex')}>Soundex</button>
         <button onClick={() => handleButtonClick('Metaphone')}>Metaphone</button>
-        <button onClick={() => handleButtonClick('CosineSimilarity')}>Cosine Similarity</button>
+        <button onClick={() => handleButtonClick('COSINE')}>Cosine Similarity</button>
       </div>
 
       <div className="DisplayResult">

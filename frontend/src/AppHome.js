@@ -10,9 +10,24 @@ function AppHome() {
   const [searchInput, setSearchInput] = useState('');
   const [displayResult, setDisplayResult] = useState('');
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     // Perform search logic here
     setDisplayResult(`Search results for: ${searchInput}`);
+    let url = "http://localhost:3001/api/search";
+    let requestBody = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchStr: searchInput})
+    };
+    const response = await fetch(url, requestBody);
+    if (!response.ok) {
+      throw new Error('Search request failed');
+    }
+
+    const data = await response.json();
+    setDisplayResult(`Search results for: ${searchInput}, Data: ${JSON.stringify(data)}`);
   };
 
   const handleJoinAnalysisClick = () => {
