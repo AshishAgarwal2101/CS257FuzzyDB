@@ -17,6 +17,9 @@ const getData = async(tableName) => {
 };
 
 const isSimilar = (algorithm, left, right) => {
+    left = left.toUpperCase();
+    right = right.toUpperCase();
+    //console.log("Algo " + algorithm + " for str " +left + " and str " +right);
     if(algorithm.toUpperCase() === "LEVENSHTEIN") {
         return similarityAlgorithms.isLevenshteinDistanceSimilar(left, right);
     }
@@ -101,6 +104,52 @@ module.exports = {
         });
 
         return userSellerJoined;
+    },
+    searchTables: async(searchStr) => {
+        let users = await queries.getAllUsers();
+        let sellers = await queries.getAllSellers();
+        let products = await queries.getAllProducts();
+        const userMatches = users.filter((user) => user.username.toUpperCase() === searchStr.toUpperCase());
+        const sellerMatches = sellers.filter((seller) => seller.sellername.toUpperCase() === searchStr.toUpperCase());
+        const productMatches = products.filter((product) => product.name.toUpperCase() === searchStr.toUpperCase());
+
+        const userMatchStrings = userMatches.map((user) => user.username);
+        const sellerMatchStrings = sellerMatches.map((seller) => seller.sellername);
+        const productMatchStrings = productMatches.map((product) => product.name);
+        const allMatchStrings = [];
+        allMatchStrings.push(...userMatchStrings);
+        allMatchStrings.push(...sellerMatchStrings);
+        allMatchStrings.push(...productMatchStrings);
+
+        const usernames = users.map((user) => user.username);
+        const sellernames = sellers.map((seller) => seller.sellername);
+        const productNames = products.map((product) => product.name);
+        const allExistingKeywordsInTable = [];
+        allExistingKeywordsInTable.push(...usernames)
+        allExistingKeywordsInTable.push(...sellernames)
+        allExistingKeywordsInTable.push(...productNames);
+
+        let similarMatcheStringsLevseshtein = allExistingKeywordsInTable.filter((keyword) => isSimilar("LEVENSHTEIN", keyword, searchStr));
+        let similarMatcheStringsSoundex = allExistingKeywordsInTable.filter((keyword) => isSimilar("SOUNDEX", keyword, searchStr));
+        let similarMatcheStringsMetaphone = allExistingKeywordsInTable.filter((keyword) => isSimilar("METAPHONE", keyword, searchStr));
+        let similarMatcheStringsCosine = allExistingKeywordsInTable.filter((keyword) => isSimilar("COSINE", keyword, searchStr));
+        let similarMatchStrings = [];
+        similarMatchStrings.push(...similarMatcheStringsLevseshtein);
+        similarMatchStrings.push(...similarMatcheStringsSoundex);
+        similarMatchStrings.push(...similarMatcheStringsMetaphone);
+        similarMatchStrings.push(...similarMatcheStringsCosine);
+
+        //removing already found
+        similarMatchStrings = similarMatchStrings.filter((similarStr) => !allMatchStrings.includes(similarStr));
+        similarMatchStrings = similarMatchStrings.map((str) => str.toLowerCase());
+        similarMatchStrings = Array.from(new Set(similarMatchStrings));
+
+        return {
+            users: userMatches,
+            sellers: sellerMatches,
+            products: productMatches,
+            similarStrings: similarMatchStrings
+        };
     },
     executeQueryWithJoin: async (sql, algorithm) => {
         let ast = parser.astify(sql);

@@ -32,6 +32,19 @@ const routes = (app) => {
         res.send(sellers);
     });
 
+    app.post("/search", async (req, res) => {
+        try {
+            let searchStr = req.body.searchStr;
+            let result = await service.searchTables(searchStr);
+            res.status(200);
+            res.send(result);
+        } catch (e) {
+            res.status(500);
+            console.log("Something went wrong during user and seller join: ", e);
+            res.send();
+        }
+    });
+
     app.post('/queryJoin', async (req, res) => {
         try {
             let sql = req.body.statement;
