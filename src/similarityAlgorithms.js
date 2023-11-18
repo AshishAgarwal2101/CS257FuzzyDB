@@ -3,28 +3,28 @@ const COSINE_SIMILARITY_THRESHOLD = 80.0;
 
 
 const isLevenshteinDistanceSimilar = (str1, str2) => {
-    let distance = levenshteinRecursive(str1, str2, str1.length, str2.length);
-    if(distance <= LEVENSHTEIN_DISTANCE_THRESHOLD) return true;
-    return false;
+  if(str1.length >= 12 && str2.length >= 12) return false;
+  let distance = levenshteinRecursive(str1, str2, str1.length, str2.length);
+  if(distance <= LEVENSHTEIN_DISTANCE_THRESHOLD) return true;
+  return false;
 };
 
 const levenshteinRecursive = (str1, str2, m, n) => {
-    if (m === 0) return n;
-    if (n === 0) return m;
-    if (str1[m - 1] === str2[n - 1]) {
-        return levenshteinRecursive(str1, str2, m - 1, n - 1);
-    }
-    
-    return 1 + Math.min(
-        levenshteinRecursive(str1, str2, m, n - 1), // Insert
-        levenshteinRecursive(str1, str2, m - 1, n), //Remove
-        levenshteinRecursive(str1, str2, m - 1, n - 1) //Replace
-    );
+  if (m === 0) return n;
+  if (n === 0) return m;
+  if (str1[m - 1] === str2[n - 1]) {
+      return levenshteinRecursive(str1, str2, m - 1, n - 1);
+  }
+  
+  return 1 + Math.min(
+      levenshteinRecursive(str1, str2, m, n - 1), // Insert
+      levenshteinRecursive(str1, str2, m - 1, n), //Remove
+      levenshteinRecursive(str1, str2, m - 1, n - 1) //Replace
+  );
 };
 
 
 const isCosineSimilar = (str1, str2) => {
-
   let similarityScore = getCosineSimilarity(str1, str2);
   if(similarityScore >= COSINE_SIMILARITY_THRESHOLD) return true;
   return false;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd frontend && npm run build && cd .. && nodemon src/app.js",
+    "start": "cd frontend && npm install && npm run build && cd .. && nodemon src/app.js",
     "easyStart": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
