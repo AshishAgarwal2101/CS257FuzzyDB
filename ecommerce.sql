@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 06:52 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Nov 18, 2023 at 06:05 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,8 +53,8 @@ CREATE TABLE `seller` (
   `sellername` varchar(50) NOT NULL,
   `userid` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `productIds` varchar(400) NOT NULL,
-  `productNames` varchar(800) NOT NULL,
+  `productId` varchar(400) NOT NULL,
+  `productName` varchar(800) NOT NULL,
   `rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,12 +62,11 @@ CREATE TABLE `seller` (
 -- Dumping data for table `seller`
 --
 
-INSERT INTO `seller` (`sellerid`, `sellername`, `userid`, `username`, `productIds`, `productNames`, `rating`) VALUES
-('s1111', 'Blue Star', '', 'ashih', '[]', '[IKEA chir 001]', 4),
-('s2222', 'Cozy Cabin', '', 'mihiw', '[]', '[Miltn Keyboard 005]', 5),
-('s3333', 'Pressbox', '', 'parsh', '[]', '[]', 3),
-('s4444', 'IBM', '', 'ashifh', '', '[Google Nexus]', 5),
-('s5555', 'Kirkland', '', 'parith', '[]', 'Bottled Water', 3);
+INSERT INTO `seller` (`sellerid`, `sellername`, `userid`, `username`, `productId`, `productName`, `rating`) VALUES
+('s1111', 'Blue Star', '', 'ashih', '', 'IKEA chir 001', 4),
+('s2222', 'Cozy Cabin', '', 'mihiw', '', 'Miltn Keyboard 005', 5),
+('s3333', 'Pressbox', '', 'parsh', '', '', 3),
+('s4444', 'IBM', '', 'ashifh', '', 'Google Nexus', 5);
 
 -- --------------------------------------------------------
 
@@ -89,9 +88,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userid`, `username`, `email`, `password`, `age`, `wishlist`) VALUES
-('user-1111', 'ashish', 'ashish@xyz.com', 2147483647, 28, '[]'),
-('user-2222', 'mihir', 'mihir@xyz.com', 2147483647, 24, '[]'),
-('user-3333', 'parth', 'parth@xyz.com', 2147483647, 25, '[]');
+('user-1111', 'ashish', 'ashish@xyz.com', 2147483647, 28, ''),
+('user-2222', 'mihir', 'mihir@xyz.com', 2147483647, 24, ''),
+('user-3333', 'parth', 'parth@xyz.com', 2147483647, 25, '');
 
 --
 -- Indexes for dumped tables
