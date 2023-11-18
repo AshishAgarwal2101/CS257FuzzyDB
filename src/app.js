@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 
 const app = express(); 
 const PORT = 3001; 
@@ -12,7 +13,7 @@ app.listen(PORT, (error) =>{
     }
 });
 
-
+app.use(cors());
 app.use(express.static('frontend/build'));
 const apiRouter = express.Router();
 app.use("/api", apiRouter);

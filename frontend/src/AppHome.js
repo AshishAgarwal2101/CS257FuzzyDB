@@ -1,6 +1,7 @@
 // AppHome.js
 
 import React, { useState } from 'react';
+import { BASE_URL } from './Common';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import './App.css';
 
@@ -10,9 +11,24 @@ function AppHome() {
   const [searchInput, setSearchInput] = useState('');
   const [displayResult, setDisplayResult] = useState('');
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     // Perform search logic here
     setDisplayResult(`Search results for: ${searchInput}`);
+    let url = BASE_URL + "/api/search";
+    let requestBody = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchStr: searchInput})
+    };
+    const response = await fetch(url, requestBody);
+    if (!response.ok) {
+      throw new Error('Search request failed');
+    }
+
+    const data = await response.json();
+    setDisplayResult(`Search results for: ${searchInput}, Data: ${JSON.stringify(data)}`);
   };
 
   const handleJoinAnalysisClick = () => {
