@@ -1,0 +1,158 @@
+/* App.css */
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #282c34; /* Set the background color for the entire body */
+  color: white; /* Set the text color for the entire body */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 20px; /* Adjusted margin to bring everything up */
+}
+
+.App-header {
+  padding: 20px;
+  text-align: center; /* Center the text in the header */
+}
+
+.Intro {
+  max-width: 800px;
+  margin: 20px auto; /* Adjusted margin to bring everything up */
+  text-align: center;
+  background-color: #282c34; /* Set the background color for the intro paragraph */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.InputBar {
+  margin-top: 20px;
+  text-align: center; /* Center the text in the input bar */
+}
+
+.InputBar label {
+  display: block;
+  margin-bottom: 10px;
+  background-color: #282c34;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.InputBar input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.JoinAnalysisButton {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.JoinAnalysisButton a {
+  text-decoration: none;
+}
+
+.JoinAnalysisButton button {
+  padding: 10px;
+  background-color: #6c29b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.QueryInput {
+  margin-top: 20px;
+}
+
+.QueryInput label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #282c34;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.QueryInput input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 300px;
+  box-sizing: border-box;
+  margin-bottom: 10px; /* Add margin to separate input from buttons */
+}
+
+.AlgorithmButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.AlgorithmButtons button {
+  padding: 10px;
+  background-color: #5186ac; /* Slightly duller color */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Increase border-radius for rounded corners */
+  cursor: pointer;
+}
+
+.DisplayResult {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Intro {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.InputBar2 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.InputBar2 label {
+  display: block;
+  margin-bottom: 10px;
+  background-color: #282c34;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.InputBar2 input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.InputBar2 button {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #5186ac; /* Slightly duller color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
