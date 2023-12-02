@@ -3,7 +3,7 @@ const COSINE_SIMILARITY_THRESHOLD = 80.0;
 
 
 const isLevenshteinDistanceSimilar = (str1, str2) => {
-  if(str1.length >= 12 && str2.length >= 12) return false;
+  if(str1.length >= 11 && str2.length >= 11) return false;
   let distance = levenshteinRecursive(str1, str2, str1.length, str2.length);
   if(distance <= LEVENSHTEIN_DISTANCE_THRESHOLD) return true;
   return false;
@@ -83,12 +83,12 @@ const getCosineSimilarity = (name1, name2) => {
 }
 
 const isSoundexSimilar = (str1, str2) => {
-  if(SoundexScore(str1) <= SoundexScore(str2)) return true;
+  if(SoundexScore(str1) === SoundexScore(str2)) return true;
   return false;
 }
 
 const isMetaphoneSimilar = (str1, str2) => {
-  if(Metaphone(str1) <= Metaphone(str2)) return true;
+  if(Metaphone(str1) === Metaphone(str2)) return true;
   return false;
 }
 

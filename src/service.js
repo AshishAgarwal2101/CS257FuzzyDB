@@ -138,12 +138,11 @@ module.exports = {
         similarMatchStrings.push(...similarMatcheStringsSoundex);
         similarMatchStrings.push(...similarMatcheStringsMetaphone);
         similarMatchStrings.push(...similarMatcheStringsCosine);
-
         //removing already found
         similarMatchStrings = similarMatchStrings.filter((similarStr) => !allMatchStrings.includes(similarStr));
         similarMatchStrings = similarMatchStrings.map((str) => str.toLowerCase());
         similarMatchStrings = Array.from(new Set(similarMatchStrings));
-
+        
         return {
             users: userMatches,
             sellers: sellerMatches,
