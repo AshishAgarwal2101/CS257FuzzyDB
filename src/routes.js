@@ -32,6 +32,12 @@ const routes = (app) => {
         res.send(sellers);
     });
 
+    app.post('/isSimilar', async (req, res) => {
+        let result = service.isSimilar(req.body.algorithm, req.body.left, req.body.right);
+        res.status(200);
+        res.send(result);
+    });
+
     app.post("/search", async (req, res) => {
         try {
             let searchStr = req.body.searchStr;

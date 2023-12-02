@@ -3,7 +3,7 @@ const COSINE_SIMILARITY_THRESHOLD = 80.0;
 
 
 const isLevenshteinDistanceSimilar = (str1, str2) => {
-  if(str1.length >= 11 && str2.length >= 11) return false;
+  if(str1.length >= 11 || str2.length >= 11) return false;
   let distance = levenshteinRecursive(str1, str2, str1.length, str2.length);
   if(distance <= LEVENSHTEIN_DISTANCE_THRESHOLD) return true;
   return false;

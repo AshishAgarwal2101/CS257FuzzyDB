@@ -229,5 +229,6 @@ module.exports = {
 
         return userSellerJoined;
 
-    }
+    },
+    isSimilar
 }
