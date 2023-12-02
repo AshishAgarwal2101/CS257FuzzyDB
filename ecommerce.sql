@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 01:18 AM
+-- Generation Time: Dec 02, 2023 at 03:00 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,15 +39,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productid`, `name`, `description`, `price`) VALUES
-('1111-aaaa', 'Ikea Chair 001', 'A wooden chair by IKEA', 250),
-('2222-aaaa', 'Milton Keyboard 005', 'Stay hydrated', 50),
-('3333-aaaa', 'ROG Laptop 009', 'Made for Gamers', 1799),
-('4444-aaaa', 'Dell Laptop 001', 'Performance enhanced', 1199),
-('5555-aaaa', 'Nike Air Max 007', 'Comfort walking', 179),
-('6666-aaaa', 'Hollister Puffer Jakcet 025', 'Feel warm', 89),
-('7777-aaaa', 'Adidas Slippers 014', 'For your home', 19),
-('8888-aaaa', 'Lamborghini Urus 001', 'For a bigger family', 115000),
-('9999-aaaa', 'Google Nexus 020', 'Made by Google', 530);
+('1111-aaaa', 'Ikea Chair', 'A wooden chair by IKEA', 250),
+('2222-aaaa', 'Milton Keyboard', 'Stay hydrated', 50),
+('3333-aaaa', 'ROG Laptop', 'Made for Gamers', 1799),
+('4444-aaaa', 'Dell Laptop', 'Performance enhanced', 1199),
+('5555-aaaa', 'Nike Air Max', 'Comfort walking', 179),
+('6666-aaaa', 'Hollister Puffer Jacket', 'Feel warm', 89),
+('7777-aaaa', 'Adidas Slippers', 'For your home', 19),
+('8888-aaaa', 'Lamborghini Urus', 'For a bigger family', 115000),
+('9999-aaaa', 'Google Nexus', 'Made by Google', 530);
 
 -- --------------------------------------------------------
 
@@ -104,6 +104,7 @@ INSERT INTO `user` (`userid`, `username`, `email`, `password`, `age`, `wishlist`
 ('user-1111', 'ashish', 'ashish@xyz.com', 2147483647, 28, ''),
 ('user-1555', 'connor', 'connor@xyz.com', 2147483647, 35, ''),
 ('user-2222', 'mihir', 'mihir@xyz.com', 2147483647, 24, ''),
+('user-3138', 'adita', 'adita@xyz.com', 2147483647, 23, ''),
 ('user-3333', 'parth', 'parth@xyz.com', 2147483647, 25, ''),
 ('user-4444', 'aditya', 'aditya@xyz.com\r\n', 2147483647, 18, ''),
 ('user-5155', 'kim', 'kim@xyz.com', 2147483647, 31, ''),
