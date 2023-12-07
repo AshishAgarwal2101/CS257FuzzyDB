@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 03:00 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 07, 2023 at 06:33 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
@@ -63,14 +63,15 @@ CREATE TABLE `seller` (
   `productId` varchar(400) NOT NULL,
   `productName` varchar(800) NOT NULL,
   `rating` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `seller`
 --
 
 INSERT INTO `seller` (`sellerid`, `sellername`, `userid`, `username`, `productId`, `productName`, `rating`) VALUES
-('s1111', 'Blue Star', '', 'ashih', '1111-aaaa', 'IKEA chair 001', 4),
+('s0000', 'AstonMartin', '', 'Anirudh', '7889-bhhhjb', 'Vantage', 5),
+('s1111', 'Blue Star', '', 'ashih', '1111-aaaa', 'IKEA char', 4),
 ('s2222', 'Cozy Cabin', '', 'mihiw', '2222-aaaa', 'Milton Keyboard 005', 5),
 ('s3333', 'Pressbox', '', 'parsh', '3333-aaaa', 'ROG Laptop 009', 3),
 ('s4444', 'IBM', '', 'ashifh', '9999-aaaa', 'Google Nexus 020', 5),
@@ -93,7 +94,7 @@ CREATE TABLE `user` (
   `password` int(11) NOT NULL,
   `age` int(11) NOT NULL,
   `wishlist` varchar(400) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -114,6 +115,7 @@ INSERT INTO `user` (`userid`, `username`, `email`, `password`, `age`, `wishlist`
 ('user-5555', 'krutik', 'krutik@xyz.com', 2147483647, 33, ''),
 ('user-5558', 'naitik', 'naitik@xyz.com', 2147483647, 30, ''),
 ('user-6666', 'manvendra', 'manvendra@xyz.com', 2147483647, 39, ''),
+('user-7634', 'AstonMartin', 'aston@gmail.com', 98978789, 34, ''),
 ('user-7770', 'robert', 'robert@xyz.com', 2147483647, 30, ''),
 ('user-7777', 'manny', 'manny@xyz.com', 2147483647, 39, ''),
 ('user-8888', 'jake', 'jake@xyz.com', 2147483647, 44, ''),
